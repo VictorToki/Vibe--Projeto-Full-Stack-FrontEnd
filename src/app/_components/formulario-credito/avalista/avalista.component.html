@@ -1,0 +1,34 @@
+<div class="container mt-5">
+  <form [formGroup]="avalistaForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <h1>Descrição da garantia:</h1>
+      <p><strong>Tipo de Bem:</strong> Imóvel</p>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
+            <mat-label>Descrição do Bem:</mat-label>
+            <!-- <input type="text" id="descricaoBem" required matInput class="form-control" formControlName="descricaoBem" placeholder=""/> -->
+            <textarea matInput required formControlName="descricaoBem" name="descricaoBem" cols="40" rows="5"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
+            <mat-label>Valor de Avaliação do Bem:</mat-label>
+            <input type="number" id="valorBem" required matInput class="form-control" formControlName="valorBem" placeholder=""/>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <button type="submit" [disabled]="!avalistaForm.valid" class="btn btn-primary mt-3">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

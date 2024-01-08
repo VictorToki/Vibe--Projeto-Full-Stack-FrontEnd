@@ -1,0 +1,73 @@
+<div class="container mt-5">
+  <div class="row">
+    <h2 class="text-center">
+      Confirmação dos dados
+    </h2>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <h2 class="no-margin">
+        Emitente
+      </h2>
+      <div class="box-dados">
+        <p><strong>Razão social: </strong>{{dados.emitente.razaoSocial}}</p>
+        <p><strong>CNPJ/ME: </strong>{{dados.emitente.cnpj}}</p>
+        <p><strong>Logradouro: </strong>{{dados.emitente.logradouro}}</p>
+        <p><strong>Cidade: </strong>{{dados.emitente.cidade}}</p>
+        <p><strong>UF: </strong>{{dados.emitente.uf}}</p>
+        <p><strong>CEP: </strong>{{dados.emitente.cep}}</p>
+        <p><strong>telefone: </strong>{{dados.emitente.telefone}}</p>
+        <p><strong>E-mail: </strong>{{dados.emitente.email}}</p>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <h2 class="no-margin">
+        Proprietário/Devedor
+      </h2>
+      <div class="box-dados">
+        <p><strong>Razão social: </strong>{{dados.proprietario.razaoSocial}}</p>
+        <p><strong>CNPJ/ME: </strong>{{dados.proprietario.cnpj}}</p>
+        <p><strong>Logradouro: </strong>{{dados.proprietario.logradouro}}</p>
+        <p><strong>Cidade: </strong>{{dados.proprietario.cidade}}</p>
+        <p><strong>UF: </strong>{{dados.proprietario.uf}}</p>
+        <p><strong>CEP: </strong>{{dados.proprietario.cep}}</p>
+        <p><strong>telefone: </strong>{{dados.proprietario.telefone}}</p>
+        <p><strong>E-mail: </strong>{{dados.proprietario.email}}</p>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <h2 class="no-margin">
+        Empréstimo concedido
+      </h2>
+      <div class="box-dados">
+        <h3>Custo efetivo total</h3>
+        <p>Valor solicitado: {{ dados.liberacao.valorSolicitado | currency : 'BRL' }}</p>
+        <p>N° parcelas: {{ dados.liberacao.numeroParcelas }}</p>
+        <p>Valor total devido ao empréstimo: {{ dados.liberacao.valorFinanciado | currency : 'BRL' }}</p>
+        <p>Valor parcela: {{ dados.liberacao.valorParcela | currency : 'BRL' }}</p>
+        <p>Valor total das parcelas: {{ dados.liberacao.valorTotalParcelas | currency : 'BRL' }}</p>
+        <a href="#" (click)="openModal(); $event.preventDefault()">Mostrar parcelas</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-6">
+      <h2 class="no-margin">
+        Descrição da garantia
+      </h2>
+      <div class="box-dados">
+        <p><strong>Tipo de Bem: </strong>Imóvel</p>
+        <p><strong>Descrição do bem: </strong>{{dados.avalista.descricaoBem}}</p>
+        <p><strong>Valor de avaliação do bem: </strong>{{dados.avalista.valorBem}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="confirmacao-footer">
+  <mat-checkbox class="example-margin" #confirmed>Estou de acordo com os dados</mat-checkbox>
+  <button type="button" class="btn btn-primary ms-5" [disabled]="!confirmed.checked" (click)="enviarForm()">Finalizar formulário</button>
+</div>

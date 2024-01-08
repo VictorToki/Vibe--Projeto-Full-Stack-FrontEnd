@@ -1,0 +1,24 @@
+<div class="edit-card"  *ngIf="!isEdit">
+  <p>_id: {{dado._id}}</p>
+  <p>id: {{dado.id}}</p>
+  <p>Nome: {{dado.name}}</p>
+  <p>Idade: {{dado.age}}</p>
+  <p>Cor favorita: {{dado.cor}}</p>
+  <p>Comida favorita: {{dado.comida}}</p>
+  <p>Bebida favorita: {{dado.bebida}}</p>
+  <p>Cidade: {{dado.cidade}}</p>
+  <button (click)="toggleEditMode()">Editar</button>
+</div>
+
+<div *ngIf="isEdit">
+  <p>_id: {{dado._id}}</p>
+  <p>id: {{dado.id}}</p>
+  <input [(ngModel)]="dado.name" placeholder="Editar nome" />
+  <input [(ngModel)]="dado.age" placeholder="Editar Idade">
+  <input [(ngModel)]="dado.cor" placeholder="Editar cor favorita">
+  <input [(ngModel)]="dado.comida" placeholder="Editar comida favorita">
+  <input [(ngModel)]="dado.bebida" placeholder="Editar bebida favorita">
+  <input [(ngModel)]="dado.cidade" placeholder="Editar cidade favorita">
+  <button (click)="saveChanges()">Salvar</button>
+  <button (click)="cancelEdit()">Cancelar</button>
+</div>

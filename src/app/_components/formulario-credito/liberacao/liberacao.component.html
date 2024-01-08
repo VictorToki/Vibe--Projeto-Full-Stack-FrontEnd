@@ -1,0 +1,85 @@
+<div class="container mt-5">
+  <form [formGroup]="liberacaoForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <h1>Custo efetivo total:</h1>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
+            <mat-label>Valor solicitado:</mat-label>
+            <input type="number" id="valorSolicitado" required matInput class="form-control" formControlName="valorSolicitado" placeholder="" min="1000000"/>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
+            <mat-label>N° parcelas:</mat-label>
+            <input type="number" id="parcelas" required matInput class="form-control" formControlName="parcelas" placeholder="" min="10" max="100"/>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <button type="submit"[disabled]="!liberacaoForm.valid" class="btn btn-secondary btn-calcula-parcela">Calcular parcelas</button>
+      </div>
+    </div>
+
+    <div class="show-table" *ngIf="showTable">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="wrap-tabela">
+            <div class="metade-tabela">
+              <table  class="text-center">
+                <thead>
+                  <tr>
+                    <th>n° parcela</th>
+                    <th>Valor parcela</th>
+                    <th>Data vencimento</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let parcela of parcelas.slice(0, parcelas.length / 2)">
+                    <td>{{ parcela.numero }}</td>
+                    <td>{{ parcela.valorParcela | currency : 'BRL' }}</td>
+                    <td>{{ parcela.dataVencimento | date:'dd/MM/yyyy' }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+      
+            <div class="metade-tabela">
+              <table  class="text-center">
+                <thead>
+                  <tr>
+                    <th>n° parcela</th>
+                    <th>Valor parcela</th>
+                    <th>Data vencimento</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let parcela of parcelas.slice(parcelas.length / 2)">
+                    <td>{{ parcela.numero }}</td>
+                    <td>{{ parcela.valorParcela | currency : 'BRL' }}</td>
+                    <td>{{ parcela.dataVencimento | date:'dd/MM/yyyy' }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="box-confirmacao">
+            <h3>Custo efetivo total</h3>
+            <p>Valor solicitado: {{ confirmaDados.valorSolicitado | currency : 'BRL' }}</p>
+            <p>N° parcelas: {{ confirmaDados.numeroParcelas }}</p>
+            <p>Valor total devido ao empréstimo: {{ confirmaDados.valorFinanciado | currency : 'BRL' }}</p>
+            <p>Valor parcela: {{ confirmaDados.valorParcela | currency : 'BRL' }}</p>
+            <p>Valor total das parcelas: {{ confirmaDados.valorTotalParcelas | currency : 'BRL' }}</p>
+            <button type="button" class="btn btn-primary" (click)="proximo()">Continuar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

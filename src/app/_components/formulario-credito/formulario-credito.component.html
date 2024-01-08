@@ -1,0 +1,29 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 text-center ">
+      <h1>Preencha o formulário de empréstimo!</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="wrap-botoes justify-content-around">
+        <button class="btn btn-primary" [routerLink]="['/formulario', 'emitente']">
+          <span>1 - Emitente</span>
+        </button>
+        <button class="btn btn-primary" [routerLink]="['/formulario', 'proprietario']">
+          <span>2 - Proprietário</span>
+        </button>
+        <button class="btn btn-primary" [routerLink]="['/formulario', 'avalista']">
+          <span>3 - Avalista</span>
+        </button>
+        <button class="btn btn-primary" [routerLink]="['/formulario', 'liberacao']">
+          <span>4 - Liberação</span>
+        </button>
+        <button class="btn btn-primary" [routerLink]="['/formulario', 'confirmacao']">
+          <span>5 - Confirmação</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

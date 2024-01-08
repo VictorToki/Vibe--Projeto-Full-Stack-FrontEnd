@@ -1,0 +1,36 @@
+<mat-drawer-container class="container-fluid" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side" opened>
+    <mat-action-list>
+      <button mat-list-item (click)="btnClick('home')">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </button>
+    </mat-action-list>
+    <!-- <mat-action-list>
+      <button mat-list-item (click)="btnClick('component-1')">component-1</button>
+    </mat-action-list>
+    <mat-action-list>
+      <button mat-list-item (click)="btnClick('component-2')">component-2</button>
+    </mat-action-list> -->
+    <div class="liberacao-credito pt-3 mt-3">
+      <mat-action-list>
+        <button mat-list-item (click)="btnClick('listaFormulario')">Formulários</button>
+      </mat-action-list>
+      <mat-action-list>
+        <button mat-list-item (click)="btnClick('formulario')">Preencher Formulário</button>
+      </mat-action-list>
+      <!-- <mat-action-list>
+        <button mat-list-item (click)="btnClick('gerarContrato')">Gerar Contrato</button>
+      </mat-action-list> -->
+    </div>
+  </mat-drawer>
+
+  <div class="sidenav-content">
+    <!-- <button type="button" class="btn-sidenav" mat-mini-fab (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button> -->
+
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-drawer-container>

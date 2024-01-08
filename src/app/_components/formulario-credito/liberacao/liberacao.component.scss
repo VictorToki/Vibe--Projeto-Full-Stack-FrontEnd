@@ -1,0 +1,35 @@
+.form-group{
+  width: 100%;
+  > *{
+    width: inherit;
+  }
+}
+
+.btn-calcula-parcela{
+  height: 56px;
+  padding-inline: 40px;
+}
+
+.wrap-tabela{
+  display: flex;
+  justify-content: space-around;
+
+  .metade-tablea{
+    width: 50%;
+  }
+}
+
+table{
+  th{
+    padding: 8px;
+  }
+  td{
+    padding: 4px 8px 4px 8px;
+  }
+}
+
+.box-confirmacao{
+  background-color: #fff;
+  padding: 8px 16px;
+  border: solid 1px #0e0e0e;
+}

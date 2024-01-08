@@ -1,0 +1,10 @@
+.form-group{
+  width: 100%;
+  > *{
+    width: inherit;
+  }
+}
+
+.titulo::first-letter{
+  text-transform: uppercase;
+}

@@ -1,0 +1,25 @@
+.container-fluid{
+  height: 100dvh;
+}
+
+.btn-sidenav{
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.liberacao-credito{
+  position: relative;
+  border-top: solid lightgray 1px;
+
+  &::before{
+    content:'Liberação de crédito';
+    position: absolute;
+    top: -10px;
+    left: 4px;
+    display: block;
+    height: 10px;
+    padding: 0 2px;
+    background-color: #fff;
+  }
+}

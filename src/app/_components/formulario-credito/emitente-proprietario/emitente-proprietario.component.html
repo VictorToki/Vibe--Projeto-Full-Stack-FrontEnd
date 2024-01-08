@@ -1,0 +1,85 @@
+<div class="container">
+  <h2 class="titulo mt-5">{{titulo}}</h2>
+  <form [formGroup]="emitenteProprietarioForm" (ngSubmit)="onSubmit()"> 
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
+            <mat-label>Razão social:</mat-label>
+            <input type="text" id="razaoSocial" required matInput class="form-control" formControlName="razaoSocial" placeholder=""/>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
+            <mat-label>CNPJ:</mat-label>
+            <input type="number" id="cnpj" required matInput class="form-control" formControlName="cnpj" placeholder=""/>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
+            <mat-label>Logradouro:</mat-label>
+            <input type="text" id="logradouro" matInput required class="form-control" formControlName="logradouro" placeholder=""/>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-7">
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
+            <mat-label>Cidade:</mat-label>
+            <input type="text" id="cidade" matInput required class="form-control" formControlName="cidade" placeholder=""/>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
+            <mat-label>UF:</mat-label>
+            <!-- <input type="select" id="uf" matInput required class="form-control" formControlName="uf" placeholder=""/> -->
+            <mat-select ngDefaultControl formControlName="uf">
+              <mat-option *ngFor="let estado of estados" value="{{ estado.sigla }}">{{estado.sigla}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
+            <mat-label>CEP:</mat-label>
+            <input type="number" id="cep" matInput required class="form-control" formControlName="cep" placeholder=""/>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
+            <mat-label>Telefone:</mat-label>
+            <input type="number" id="telefone" matInput required class="form-control" formControlName="telefone" placeholder=""/>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
+            <mat-label>E-mail:</mat-label>
+            <input type="text" id="email" matInput required class="form-control" formControlName="email" placeholder=""/>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <button type="submit" [disabled]="!emitenteProprietarioForm.valid" class="btn btn-primary mt-3">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

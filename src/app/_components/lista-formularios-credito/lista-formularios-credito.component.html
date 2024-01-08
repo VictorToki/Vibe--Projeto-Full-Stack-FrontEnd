@@ -1,0 +1,26 @@
+
+<div class="wrap p-3" *ngIf="!errorMessage">
+  <div *ngFor="let dado of dados" class="card">
+    <!-- <p>_id: {{dado._id}}</p> -->
+    <p>Versão: {{dado.version}}</p>
+    <p>Proprietário: {{dado.proprietario.razaoSocial}}</p>
+    <p>Emitente: {{dado.emitente.razaoSocial}}</p>
+    <p>Valor Financiado: {{dado.liberacao.valorFinanciado | currency : 'BRL' }}</p>
+    <p>Última alteração: {{ dado.logs[dado.logs.length - 1]?.date | date:'medium' }}</p>
+    <button (click)="gerarContrato(dado._id)">Gerar Contrato</button>
+    <!-- <button (click)="saveChanges()">Salvar</button>
+    <button (click)="cancelEdit()">Cancelar</button> -->
+  </div>
+</div>
+<div *ngIf="errorMessage">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="error-message text-center mt-5">
+          <h1>{{ errorMessage }}</h1>
+          <button class="btn btn-primary" [routerLink]="['/formulario']">Preencher Formulário</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
