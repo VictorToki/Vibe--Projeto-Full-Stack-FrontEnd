@@ -28,7 +28,6 @@ export class Component2Component {
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    console.warn(this.profileForm.value);
     let dados = this.profileForm.value
 
     this.contasService.addDados(dados).subscribe({

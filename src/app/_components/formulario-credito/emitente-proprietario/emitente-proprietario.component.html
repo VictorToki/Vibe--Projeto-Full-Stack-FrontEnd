@@ -1,85 +1,112 @@
-<div class="container">
-  <h2 class="titulo mt-5">{{titulo}}</h2>
-  <form [formGroup]="emitenteProprietarioForm" (ngSubmit)="onSubmit()"> 
-    <div class="row">
-      <div class="col-md-8">
-        <div class="form-group">
-          <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
-            <mat-label>Razão social:</mat-label>
-            <input type="text" id="razaoSocial" required matInput class="form-control" formControlName="razaoSocial" placeholder=""/>
-          </mat-form-field>
+<form [formGroup]="emitenteProprietarioForm" (ngSubmit)="onSubmit()"> 
+  <div class="container">
+    <h2 class="titulo mt-5">{{titulo}}</h2>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group">
+            <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
+              <mat-label>Razão social:</mat-label>
+              <input type="text" id="razaoSocial" required matInput class="form-control" formControlName="razaoSocial" minlength="4" placeholder=""/>
+              <mat-error>Razão social inválido</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
+              <mat-label>CNPJ:</mat-label>
+              <input type="text" id="cnpj" required matInput class="form-control" formControlName="cnpj" placeholder="" maxlength="14" minlength="14"/>
+              <mat-error>Cnpj inválido</mat-error>
+            </mat-form-field>
+          </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
-            <mat-label>CNPJ:</mat-label>
-            <input type="number" id="cnpj" required matInput class="form-control" formControlName="cnpj" placeholder=""/>
-          </mat-form-field>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
+              <mat-label>Logradouro:</mat-label>
+              <input type="text" id="logradouro" matInput required class="form-control" formControlName="logradouro" minlength="3" placeholder=""/>
+              <mat-error>Logradouro inválido</mat-error>
+            </mat-form-field>
+          </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-7">
+          <div class="form-group">
+            <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
+              <mat-label>Cidade:</mat-label>
+              <input type="text" id="cidade" matInput required class="form-control" formControlName="cidade" minlength="3" placeholder=""/>
+              <mat-error>Cidade inválida</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
+              <mat-label>UF:</mat-label>
+              <!-- <input type="select" id="uf" matInput required class="form-control" formControlName="uf" placeholder=""/> -->
+              <mat-select required formControlName="uf">
+                <mat-option  *ngFor="let estado of estados" value="{{ estado.sigla }}">{{estado.sigla}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
+              <mat-label>CEP:</mat-label>
+              <input type="text" id="cep" matInput required class="form-control" formControlName="cep" maxlength="8" minlength="8" placeholder=""/>
+              <mat-error>CEP inválido</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
+              <mat-label>Telefone:</mat-label>
+              <input type="text" id="telefone" matInput required class="form-control" formControlName="telefone" minlength="8" maxlength="15" placeholder=""/>
+              <mat-error>Telefone inválido</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
+              <mat-label>E-mail:</mat-label>
+              <input type="text" id="email" matInput required class="form-control" formControlName="email" placeholder="" formControlName="email"/>
+              <mat-error *ngIf="emitenteProprietarioForm.get('email')?.hasError('email') && emitenteProprietarioForm.get('email')?.touched">
+                E-mail inválido!
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="d-grid flex-row-reverse gap-2 d-md-flex justify-content-between">
+          
+        </div>
+      </div>
+    
+  </div>
+
+  <div class="detalhe-footer">
+    <div class="wrap-btn  d-grid gap-2 d-md-flex flex-row-reverse justify-content-between">
+      <button type="submit" [disabled]="!emitenteProprietarioForm.valid" class="btn-continuar">
+        <span class="text">Continuar</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+          <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+        </svg>
+      </button>
+      <button type="button" (click)="goBack()" *ngIf="btnVoltar" class="btn-voltar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+        <span class="text">Voltar</span>
+      </button>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="form-group">
-          <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
-            <mat-label>Logradouro:</mat-label>
-            <input type="text" id="logradouro" matInput required class="form-control" formControlName="logradouro" placeholder=""/>
-          </mat-form-field>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-7">
-        <div class="form-group">
-          <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
-            <mat-label>Cidade:</mat-label>
-            <input type="text" id="cidade" matInput required class="form-control" formControlName="cidade" placeholder=""/>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="form-group">
-          <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
-            <mat-label>UF:</mat-label>
-            <!-- <input type="select" id="uf" matInput required class="form-control" formControlName="uf" placeholder=""/> -->
-            <mat-select ngDefaultControl formControlName="uf">
-              <mat-option *ngFor="let estado of estados" value="{{ estado.sigla }}">{{estado.sigla}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="form-group">
-          <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
-            <mat-label>CEP:</mat-label>
-            <input type="number" id="cep" matInput required class="form-control" formControlName="cep" placeholder=""/>
-          </mat-form-field>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
-            <mat-label>Telefone:</mat-label>
-            <input type="number" id="telefone" matInput required class="form-control" formControlName="telefone" placeholder=""/>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
-            <mat-label>E-mail:</mat-label>
-            <input type="text" id="email" matInput required class="form-control" formControlName="email" placeholder=""/>
-          </mat-form-field>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <button type="submit" [disabled]="!emitenteProprietarioForm.valid" class="btn btn-primary mt-3">Submit</button>
-      </div>
-    </div>
-  </form>
-</div>
+  </div>
+</form>

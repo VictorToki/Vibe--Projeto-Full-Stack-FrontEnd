@@ -3,6 +3,23 @@
   border-radius: 16px;
   max-width: 300px;
   padding: 8px 16px;
+
+  &:hover{
+    .btn-detalhe{
+      transition: ease-in-out 0.3s;
+      width: 110px;
+  
+      .text{
+        transition: ease-in-out 0.4s;
+        opacity: 1;
+        margin-right: 20px;
+      }
+    }
+  }
+}
+
+a{
+  text-decoration: none;
 }
 
 .wrap{
@@ -10,4 +27,47 @@
   display: grid;
   grid-gap: 8px;
   grid-template-columns: repeat(3, 1fr);
+}
+
+.btn-detalhe{
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding-left: 16px;
+  border-radius: 50px;
+  width: 48px;
+  height: 48px;
+  transition: ease-in-out 0.3s;
+  border: 1px solid #85DB18;
+  background: linear-gradient(247deg, #85DB18 0%, #0dcaf0 100%);
+
+  .text{
+    text-decoration: none;
+    color: #fff;
+    transition: ease-in-out 0.4s;
+    opacity: 0;
+  }
+
+  svg{
+    content: '';
+    display: block;
+    position: absolute;
+    
+    top: 50%;
+    right: 6px;
+    transform: translateY(-50%);
+    color: #fff;
+  }
+}
+
+.contrato-gerado{
+  background: linear-gradient(to bottom right, #B0DB7D 40%, #99DBB4 100%);
+  box-shadow: 5px 5px 20px rgba(#CBCDD3, 10%);
+}
+
+.contrato-gerado-texto{
+  display: flex;
+  align-items: center;
+  font-weight: bold;
 }

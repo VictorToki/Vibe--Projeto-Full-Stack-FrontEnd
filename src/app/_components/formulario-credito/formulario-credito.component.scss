@@ -1,3 +1,45 @@
 .wrap-botoes{
   display: flex;
 }
+
+.btn-form{
+  position: relative;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  border: solid 2px #9f9f9f;
+
+  &:disabled{
+    opacity: 0.2;
+  }
+
+  &.active{
+    .number{
+      color: #fff;
+    }
+    border: solid 1px #0dcaf0;
+    background: linear-gradient(247deg, #85DB18 0%, #0dcaf0 100%);
+  }
+
+  &:hover{
+    .number{
+      color: #fff;
+    }
+    background-color: #0dcaf0;
+    border: solid 1px #0dcaf0;
+  }
+
+  .number{
+    font-size: 1.4rem;
+  }
+
+  .bottom-text{
+    content: '';
+    display: block;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+}

@@ -1,3 +1,28 @@
+mat-drawer-container{
+  background: linear-gradient(247deg, #85DB18 0%, #0dcaf0 100%);
+}
+
+mat-drawer{
+  background-color: #fff;
+  border-radius: 16px;
+  border: solid 1px #85DB18;
+  margin: 16px 0;
+}
+mat-drawer-container > *{
+  overflow: hidden!important;
+}
+
+.sidenav-content{
+  background-color: #f0f0f0;
+  border-radius: 16px;
+  border: solid 1px #85DB18;
+  position: relative;
+  display: inline-block;
+  margin: 16px;
+  min-height: 97svh;
+  width: 98%;
+}
+
 .container-fluid{
   height: 100dvh;
 }

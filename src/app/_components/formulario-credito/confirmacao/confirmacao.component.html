@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-5" *ngIf="!isSuccessful">
   <div class="row">
     <h2 class="text-center">
       Confirmação dos dados
@@ -65,9 +65,40 @@
       </div>
     </div>
   </div>
+
+  <div class="detalhe-footer">
+    <div class="wrap-btn  d-grid gap-2 d-md-flex flex-row-reverse justify-content-between">
+      <div class="wrap-confirm">
+        <mat-checkbox class="example-margin me-3" #confirmed>Estou de acordo com os dados</mat-checkbox>
+        <button type="button" class="btn-continuar"  [disabled]="!confirmed.checked" (click)="enviarForm()">
+          <span class="text">Continuar</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+            <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+          </svg>
+        </button>
+      </div>
+
+      <button type="button" (click)="goBack()" class="btn-voltar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+        <span class="text">Voltar</span>
+      </button>
+    </div>
+  </div>
 </div>
 
-<div class="confirmacao-footer">
+<div class="container p-5 mt-5" *ngIf="isSuccessful">
+  <div class="row">
+    <div class="text-center">
+      <h1>Formulário enviado com sucesso</h1>
+      <h2>Redirecionando para lista de formulários...</h2>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="confirmacao-footer d-grid gap-2 d-md-flex justify-content-md-end">
+  <button type="button" class="btn btn-secondary  mt-3" (click)="goBack()" *ngIf="btnVoltar">Voltar</button>
   <mat-checkbox class="example-margin" #confirmed>Estou de acordo com os dados</mat-checkbox>
   <button type="button" class="btn btn-primary ms-5" [disabled]="!confirmed.checked" (click)="enviarForm()">Finalizar formulário</button>
-</div>
+</div> -->

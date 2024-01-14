@@ -2,5 +2,45 @@
 <div class="container">
   <h1>Parcelas</h1>
 
+  <div class="wrap-tabela">
+    <div class="metade-tabela">
+      <table  class="text-center">
+        <thead>
+          <tr>
+            <th>n° parcela</th>
+            <th>Valor parcela</th>
+            <th>Data vencimento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let parcela of parcelas.slice(0, parcelas.length / 2)">
+            <td>{{ parcela.numero }}</td>
+            <td>{{ parcela.valorParcela | currency : 'BRL' }}</td>
+            <td>{{ parcela.dataVencimento | date:'dd/MM/yyyy' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="metade-tabela">
+      <table  class="text-center">
+        <thead>
+          <tr>
+            <th>n° parcela</th>
+            <th>Valor parcela</th>
+            <th>Data vencimento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let parcela of parcelas.slice(parcelas.length / 2)">
+            <td>{{ parcela.numero }}</td>
+            <td>{{ parcela.valorParcela | currency : 'BRL' }}</td>
+            <td>{{ parcela.dataVencimento | date:'dd/MM/yyyy' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <button mat-button class="btn btn-secondary" [mat-dialog-close]="'Fechar'">Fechar</button>
 </div>

@@ -23,7 +23,6 @@ export class Component1Component {
   ngOnInit(){
     this.contasService.getDados().subscribe({
       next: data => {
-        console.warn(data)
         let objArray: any[] = []
         if (Array.isArray(data)){
           data.forEach(item => {

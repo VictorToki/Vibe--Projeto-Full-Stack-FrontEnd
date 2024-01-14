@@ -32,6 +32,7 @@ export class ListaFormulariosCreditoComponent {
             itemInsert._id = item._id;
             itemInsert.version = item.version;
             itemInsert.logs = item.logs;
+            itemInsert.contratoGerado = item.confirm;
             objArray.push(itemInsert)
           });
         }
@@ -41,7 +42,6 @@ export class ListaFormulariosCreditoComponent {
         }
         
         this.dados = objArray
-        console.warn(this.dados)
       },
       error: err => {
         this.errorMessage = err;
@@ -49,28 +49,5 @@ export class ListaFormulariosCreditoComponent {
     })
   }
 
-  gerarContrato(id: string){
-    this.pdfService.downloadPdf(id).subscribe(response => {
-      this.handlePdfResponse(response, id);
-    });
-  }
-
   
-  private handlePdfResponse(blob: Blob, id: string) {
-    // Cria um objeto URL do blob e cria um link para fazer o download
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-  
-    // Define o nome do arquivo com base no ID do formulário
-    link.download = `CCB_COM_GARANTIA_${id}.pdf`;
-  
-    // Adiciona o link ao documento e o aciona
-    document.body.appendChild(link);
-    link.click();
-  
-    // Libera o objeto URL e remove o link do documento
-    window.URL.revokeObjectURL(url);
-    document.body.removeChild(link);
-  }
 }

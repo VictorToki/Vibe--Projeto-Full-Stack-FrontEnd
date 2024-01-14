@@ -1,26 +1,26 @@
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-8 text-center ">
-      <h1>Preencha o formulário de empréstimo!</h1>
-    </div>
-  </div>
+<div class="container mt-5 mb-3">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-10 mx-auto">
       <div class="wrap-botoes justify-content-around">
-        <button class="btn btn-primary" [routerLink]="['/formulario', 'emitente']">
-          <span>1 - Emitente</span>
+        <button class="btn btn-form" [routerLink]="['/formulario', 'emitente']" routerLinkActive="active">
+          <span class="number">1</span>
+          <span class="bottom-text">Emitente</span>
         </button>
-        <button class="btn btn-primary" [routerLink]="['/formulario', 'proprietario']">
-          <span>2 - Proprietário</span>
+        <button class="btn btn-form" [disabled]="!habilitarBotao2 && !reloadHabilitarBotao2" [routerLink]="['/formulario', 'proprietario']" routerLinkActive="active">
+          <span class="number">2</span>
+          <span class="bottom-text">Proprietário</span>
         </button>
-        <button class="btn btn-primary" [routerLink]="['/formulario', 'avalista']">
-          <span>3 - Avalista</span>
+        <button class="btn btn-form" [disabled]="!habilitarBotao3 && !reloadHabilitarBotao3" [routerLink]="['/formulario', 'avalista']" routerLinkActive="active">
+          <span class="number">3</span>
+          <span class="bottom-text">Avalista</span>
         </button>
-        <button class="btn btn-primary" [routerLink]="['/formulario', 'liberacao']">
-          <span>4 - Liberação</span>
+        <button class="btn btn-form" [disabled]="!habilitarBotao4 && !reloadHabilitarBotao4" [routerLink]="['/formulario', 'liberacao']" routerLinkActive="active">
+          <span class="number">4</span>
+          <span class="bottom-text">Liberação</span>
         </button>
-        <button class="btn btn-primary" [routerLink]="['/formulario', 'confirmacao']">
-          <span>5 - Confirmação</span>
+        <button class="btn btn-form" [disabled]="!habilitarBotao5 && !reloadHabilitarBotao5" [routerLink]="['/formulario', 'confirmacao']" routerLinkActive="active">
+          <span class="number">5</span>
+          <span class="bottom-text">Confirmação</span>
         </button>
       </div>
     </div>

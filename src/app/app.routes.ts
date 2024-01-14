@@ -10,6 +10,7 @@ import { AvalistaComponent } from './_components/formulario-credito/avalista/ava
 import { LiberacaoComponent } from './_components/formulario-credito/liberacao/liberacao.component';
 import { ConfirmacaoComponent } from './_components/formulario-credito/confirmacao/confirmacao.component';
 import { ListaFormulariosCreditoComponent } from './_components/lista-formularios-credito/lista-formularios-credito.component';
+import { DetalheFormularioComponent } from './_components/lista-formularios-credito/detalhe-formulario/detalhe-formulario.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent, children: [
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'component-1', component: Component1Component},
   { path: 'component-2', component: Component2Component},
   { path: 'listaFormulario', component: ListaFormulariosCreditoComponent},
+  { path: 'detalheFormulario/:id', component: DetalheFormularioComponent},
   { path: 'formulario', component: FormularioCreditoComponent, children: [
     {path: 'emitente', component: EmitenteProprietarioComponent, data: {dado: 'emitente'}},
     {path: 'proprietario', component: EmitenteProprietarioComponent, data: {dado: 'proprietario'}},

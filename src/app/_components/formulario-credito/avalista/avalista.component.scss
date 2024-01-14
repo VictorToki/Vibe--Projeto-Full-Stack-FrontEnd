@@ -1,6 +1,55 @@
+@property --a {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 247deg;
+}
+
 .form-group{
   width: 100%;
   > *{
     width: inherit;
+  }
+}
+
+
+.detalhe-footer{
+  position: absolute;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  background-color: #fff;
+  border-top: 1px solid lightgreen;
+  border-radius: 0 0 16px 16px;
+  padding: 10px;
+}
+
+button{
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 50px;
+  width: auto;
+  height: 40px;
+  transition: ease-in-out 0.3s;
+  border: 1px solid #85DB18;
+  transition: --a 0.5s;
+  background:linear-gradient(var(--a),#85DB18 ,#0dcaf0);
+  color: #fff;
+
+  .text{
+    text-decoration: none;
+    color: #fff;
+    transition: ease-in-out 0.3s;
+    margin: 0 8px;
+  }
+
+  &:hover:not(:disabled){
+    --a:33deg;
+  }
+
+  &:disabled{
+    opacity: .3;
   }
 }

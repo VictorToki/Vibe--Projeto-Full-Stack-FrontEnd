@@ -1,1 +1,50 @@
-<p>Home Works</p>
+<div class="container p-5" >
+  <div class="row justify-content-center pb-5"  [class.super-size]="extraSize" [class.close]="closeExtraSize">
+    <div class="logo-vibe">
+      <div class="img-logo">
+        <div class="line-1"  [class.logo-gradient]="extraGradient" [class.check-animation]="checkAnimation" [class.finish-animation]="finishAnimation"></div>
+        <div class="line-2"  [class.logo-gradient]="extraGradient"  [class.check-animation]="checkAnimation" [class.finish-animation]="finishAnimation"></div>
+      </div>
+      <div class="text-home">
+        vibe
+      </div>
+      <div class="sub-text-home mt-3">
+        sempre vibrando por você
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-5 text-center"  [class.super-size]="extraSize" [class.close]="closeExtraSize"> 
+    <h3>Projeto Full-Stack para apresentação</h3>
+  </div>
+
+  <div class="row justify-content-center mt-5"  [class.super-size]="extraSize" [class.close]="closeExtraSize">
+    <div class="col-md-4">
+      <ul>
+        <li>Apresentação do projeto</li>
+        <li>Explicação das funcionalidade</li>
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <ul>
+        <li>Demonstração da estrutura do código</li>
+        <li>Discussão sobre melhorias</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="extra-content"  [class.open]="showExtra" [class.close]="close">
+    <button type="button" class="extra-toggle" (click)="toggleExtra()">
+      <span>Extra</span>
+    </button>
+    <button type="button" class="btn-extra" mat-list-item (click)="btnSize()" *ngIf="showExtra">
+      <mat-icon>format_size</mat-icon>
+    </button>
+    <button type="button" class="btn-extra" mat-list-item (click)="btnGradient()" *ngIf="showExtra">
+      <mat-icon>tag_faces</mat-icon>
+    </button>
+    <button type="button" class="btn-extra" mat-list-item (click)="triggerAnimation()" *ngIf="showExtra">
+      <mat-icon>check_circle_outline</mat-icon>
+    </button>
+  </div>
+</div>

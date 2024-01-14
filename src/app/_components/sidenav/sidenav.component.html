@@ -1,9 +1,8 @@
-<mat-drawer-container class="container-fluid" autosize>
+<mat-drawer-container class="container-fluid">
   <mat-drawer #drawer class="sidenav" mode="side" opened>
     <mat-action-list>
       <button mat-list-item (click)="btnClick('home')">
-        <mat-icon>home</mat-icon>
-        <span>Home</span>
+          <span>Home</span>
       </button>
     </mat-action-list>
     <!-- <mat-action-list>
@@ -17,7 +16,7 @@
         <button mat-list-item (click)="btnClick('listaFormulario')">Formulários</button>
       </mat-action-list>
       <mat-action-list>
-        <button mat-list-item (click)="btnClick('formulario')">Preencher Formulário</button>
+        <button mat-list-item (click)="btnClick('formulario/emitente')">Preencher Formulário</button>
       </mat-action-list>
       <!-- <mat-action-list>
         <button mat-list-item (click)="btnClick('gerarContrato')">Gerar Contrato</button>
@@ -25,12 +24,15 @@
     </div>
   </mat-drawer>
 
-  <div class="sidenav-content">
-    <!-- <button type="button" class="btn-sidenav" mat-mini-fab (click)="drawer.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button> -->
+  <mat-drawer-content>
+    <div class="sidenav-content">
+      <!-- <button type="button" class="btn-sidenav" mat-mini-fab (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button> -->
+  
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
 
-    <router-outlet></router-outlet>
-  </div>
 
 </mat-drawer-container>

@@ -8,6 +8,7 @@ import { ModalContentComponent } from '../../modal-content/modal-content.compone
 import { MatDialog } from '@angular/material/dialog';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FormularioService } from '../../../_services/formulario.service';
+import { Router } from '@angular/router';
 
 registerLocaleData(ptBr);
 
@@ -22,25 +23,23 @@ registerLocaleData(ptBr);
 export class ConfirmacaoComponent {
   dados: any;
   checkbox: boolean = false;
+  isSuccessful: boolean = false;
+  btnVoltar: boolean | undefined = false;
 
-  constructor(private dialog: MatDialog, private formularioService: FormularioService){}
+  constructor(private dialog: MatDialog, private formularioService: FormularioService, private router: Router){}
 
   ngOnInit(){
     this.dados = {
-      emitente: JSON.parse(localStorage.getItem('emitente')!),
-      proprietario: JSON.parse(localStorage.getItem('proprietario')!) ,
-      avalista: JSON.parse(localStorage.getItem('avalista')!) ,
-      liberacao: JSON.parse(localStorage.getItem('liberacao')!) ,
+      emitente: JSON.parse(localStorage.getItem('formulario.emitente')!),
+      proprietario: JSON.parse(localStorage.getItem('formulario.proprietario')!) ,
+      avalista: JSON.parse(localStorage.getItem('formulario.avalista')!) ,
+      liberacao: JSON.parse(localStorage.getItem('formulario.liberacao')!) ,
     }
   }
 
   openModal() {
     const dialogRef = this.dialog.open(ModalContentComponent);
 
-    // Exemplo: Capturar o resultado do modal (se houver)
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Resultado do modal: ${result}`);
-    });
   }
 
   confirmCheckbox(){
@@ -48,13 +47,16 @@ export class ConfirmacaoComponent {
   }
 
   enviarForm(){
-    debugger;
-
     let form = this.dados;
+    localStorage.clear();
 
     this.formularioService.addForm(form).subscribe({
       next: data =>{
-        console.log("Formulário enviado com sucesso")
+        this.isSuccessful = true
+        console.log("Formulário enviado com sucesso");
+        setTimeout(() => {
+          this.router.navigate(['listaFormulario'])
+        }, 3000);
       },
       error: err => {
         console.log(err)
@@ -62,4 +64,7 @@ export class ConfirmacaoComponent {
     })
   }
 
+  goBack(){
+    this.router.navigate(['formulario', 'proprietario']);
+  }
 }

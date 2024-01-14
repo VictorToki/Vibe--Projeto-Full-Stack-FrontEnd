@@ -40,16 +40,6 @@ export class CardComponent {
         console.error('Erro ao alterar dado:', err)
       }
     })
-
-    // Gravar log
-    // this.logService.logAction(id, `Ação realizada em ${id}`).subscribe({
-    //   next: data => {
-    //     console.log('Log registrado com sucesso')
-    //   },
-    //   error: err => {
-    //     console.error('Erro ao registrar log:', err)
-    //   }
-    // })
   }
 
   cancelEdit() {

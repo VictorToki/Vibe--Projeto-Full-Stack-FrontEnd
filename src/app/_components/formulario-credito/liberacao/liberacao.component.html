@@ -1,5 +1,5 @@
-<div class="container mt-5">
-  <form [formGroup]="liberacaoForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="liberacaoForm" (ngSubmit)="onSubmit()">
+  <div class="container mt-5">
     <div class="row">
       <h1>Custo efetivo total:</h1>
     </div>
@@ -8,7 +8,7 @@
         <div class="form-group">
           <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
             <mat-label>Valor solicitado:</mat-label>
-            <input type="number" id="valorSolicitado" required matInput class="form-control" formControlName="valorSolicitado" placeholder="" min="1000000"/>
+            <input id="valorSolicitado" required matInput class="form-control" formControlName="valorSolicitado" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left'}"/>
           </mat-form-field>
         </div>
       </div>
@@ -16,12 +16,12 @@
         <div class="form-group">
           <mat-form-field appearance="outline" class="form-field-full" [hideRequiredMarker]="true">
             <mat-label>N° parcelas:</mat-label>
-            <input type="number" id="parcelas" required matInput class="form-control" formControlName="parcelas" placeholder="" min="10" max="100"/>
+            <input type="number" id="numeroParcelas" required matInput class="form-control" formControlName="numeroParcelas" placeholder="" min="10" max="100" placeholder="max:100"/>
           </mat-form-field>
         </div>
       </div>
       <div class="col-md-4">
-        <button type="submit"[disabled]="!liberacaoForm.valid" class="btn btn-secondary btn-calcula-parcela">Calcular parcelas</button>
+        <button #calcularParcela type="submit"[disabled]="!liberacaoForm.valid" class="btn btn-secondary btn-calcula-parcela">Calcular parcelas</button>
       </div>
     </div>
 
@@ -76,10 +76,28 @@
             <p>Valor total devido ao empréstimo: {{ confirmaDados.valorFinanciado | currency : 'BRL' }}</p>
             <p>Valor parcela: {{ confirmaDados.valorParcela | currency : 'BRL' }}</p>
             <p>Valor total das parcelas: {{ confirmaDados.valorTotalParcelas | currency : 'BRL' }}</p>
-            <button type="button" class="btn btn-primary" (click)="proximo()">Continuar</button>
+            <!-- <button type="button" class="btn btn-primary" (click)="proximo()">Continuar</button> -->
           </div>
         </div>
       </div>
     </div>
-  </form>
-</div>
+  </div>
+
+  <div class="detalhe-footer">
+    <div class="wrap-btn  d-grid gap-2 d-md-flex flex-row-reverse justify-content-between">
+      <button type="button" [disabled]="!btnProximo" (click)="proximo()" class="btn-continuar">
+        <span class="text">Continuar</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+          <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+        </svg>
+      </button>
+      <button type="button" (click)="goBack()" class="btn-voltar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+          <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+        <span class="text">Voltar</span>
+      </button>
+    </div>
+  </div>
+
+</form>

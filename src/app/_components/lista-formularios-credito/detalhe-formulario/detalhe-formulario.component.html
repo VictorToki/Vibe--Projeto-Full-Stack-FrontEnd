@@ -1,0 +1,304 @@
+
+<div class="container p-0"  *ngIf="formData">
+  <div class="detalhe-header">
+    <button class="btn btn-voltar" (click)="goBack()" [class.hidden]="isEdit">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+        <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+      </svg>
+      <span class="text">Voltar</span>
+    </button>
+
+    <button class="btn btn-editar" (click)="toggleEditMode()" *ngIf="!formData.confirm">
+      <span class="text">Editar</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="detalhe-content" *ngIf="!isEdit">
+    <div class="row" *ngIf="formData">
+      <div class="col-md-7">
+        <div class="row">
+          <div class="col-md-6">
+            <h2 class="no-margin">
+              Emitente
+            </h2>
+            <div class="box-dados">
+              <p><strong>Razão social: </strong>{{formData.body.emitente.razaoSocial}}</p>
+              <p><strong>CNPJ/ME: </strong>{{formData.body.emitente.cnpj}}</p>
+              <p><strong>Logradouro: </strong>{{formData.body.emitente.logradouro}}</p>
+              <p><strong>Cidade: </strong>{{formData.body.emitente.cidade}}</p>
+              <p><strong>UF: </strong>{{formData.body.emitente.uf}} <strong style="margin-left: 16px;">CEP: </strong>{{formData.body.emitente.cep}}</p>
+              <p><strong>telefone: </strong>{{formData.body.emitente.telefone}}</p>
+              <p><strong>E-mail: </strong>{{formData.body.emitente.email}}</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <h2 class="no-margin">
+              Proprietário/Devedor
+            </h2>
+            <div class="box-dados">
+              <p><strong>Razão social: </strong>{{formData.body.proprietario.razaoSocial}}</p>
+              <p><strong>CNPJ/ME: </strong>{{formData.body.proprietario.cnpj}}</p>
+              <p><strong>Logradouro: </strong>{{formData.body.proprietario.logradouro}}</p>
+              <p><strong>Cidade: </strong>{{formData.body.proprietario.cidade}}</p>
+              <p><strong>UF: </strong>{{formData.body.proprietario.uf}} <strong style="margin-left: 16px;">CEP: </strong>{{formData.body.proprietario.cep}}</p>
+              <p><strong>telefone: </strong>{{formData.body.proprietario.telefone}}</p>
+              <p><strong>E-mail: </strong>{{formData.body.proprietario.email}}</p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="row mt-2">
+          <div class="col-md-12">
+            <h2 class="no-margin">
+              Descrição da garantia
+            </h2>
+            <div class="box-dados">
+              <p><strong>Tipo de Bem: </strong>Imóvel</p>
+              <p><strong>Descrição do bem: </strong>{{formData.body.avalista.descricaoBem}}</p>
+              <p><strong>Valor de avaliação do bem: </strong>{{formData.body.avalista.valorBem  | currency : 'BRL'}}</p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="row mt-2">
+          <div class="col-md-12">
+            <h2 class="no-margin">
+              Empréstimo concedido
+            </h2>
+            <div class="box-dados">
+              <h3><strong>Custo efetivo total</strong></h3>
+              <p><strong>Valor solicitado:</strong> {{ formData.body.liberacao.valorSolicitado | currency : 'BRL' }}</p>
+              <p><strong>N° parcelas:</strong> {{ formData.body.liberacao.numeroParcelas }}</p>
+              <p><strong>Valor total devido ao empréstimo:</strong> {{ formData.body.liberacao.valorFinanciado | currency : 'BRL' }}</p>
+              <p><strong>Valor parcela:</strong> {{ formData.body.liberacao.valorParcela | currency : 'BRL' }}</p>
+              <p><strong>Valor total das parcelas:</strong> {{ formData.body.liberacao.valorTotalParcelas | currency : 'BRL' }}</p>
+              <!-- <a href="#" (click)="openModal(); $event.preventDefault()">Mostrar parcelas</a> -->
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="col-md-5">
+        <h2 class="no-margin">
+          Histórico
+        </h2>
+
+        <ul>
+          <li  *ngFor="let log of formattedLogs">
+            <div *ngIf="log.version == 1">
+              <p class="no-margin"><strong>Data de criação:</strong> {{log.date | date:'medium'}}</p>
+            </div>
+            <div *ngIf="log.version != 1">
+              <cdk-accordion class="hist-accordion">
+                  <cdk-accordion-item
+              
+                    #accordionItem="cdkAccordionItem"
+                    class="hist-accordion-item"
+                    role="button"
+                    tabindex="0"
+                    [attr.id]="'accordion-header-' + log.version"
+                    [attr.aria-expanded]="accordionItem.expanded"
+                    [attr.aria-controls]="'accordion-body-' + log.version">
+                    <div class="hist-accordion-item-header" (click)="accordionItem.toggle()">
+                      <p class="no-margin"><strong>Data de alteração:</strong> {{log.date | date:'medium'}}</p>
+                      <span class="hist-accordion-item-description" [class.opened]="accordionItem.expanded">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                          <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                        </svg>
+                      </span>
+                    </div>
+                    <div
+                      class="hist-accordion-item-body  mt-2"
+                      role="region"
+                      [style.display]="accordionItem.expanded ? '' : 'none'"
+                      [attr.id]="'accordion-body-' + log.version"
+                      [attr.aria-labelledby]="'accordion-header-' + log.version">
+                      <div *ngFor="let keyValuePair of getEntries(log.changes)">
+                        <p class="no-margin uppercase"><strong>{{ keyValuePair.key }}</strong></p>
+                        <div *ngFor="let innerKeyValuePair of getEntries(keyValuePair.value)">
+                          <span>
+                            {{ camelCaseToWords(innerKeyValuePair.key) }}: 
+
+                            <ng-container *ngIf="innerKeyValuePair.key.includes('valor');else isDate">{{ innerKeyValuePair.value | currency: 'BRL' }}</ng-container>
+                            <ng-template #isDate>
+                                <ng-container *ngIf="innerKeyValuePair.key.includes('data');else default">{{ innerKeyValuePair.value | date:'shortDate' }}</ng-container>
+                            </ng-template>
+                            <ng-template #default>{{ innerKeyValuePair.value }}</ng-template>
+
+                        </span>
+                        </div>
+                      </div>
+                    </div>
+                  </cdk-accordion-item>
+                </cdk-accordion>
+              </div>
+            </li>
+        </ul>
+
+        <p>
+          Versão: {{formData.version}}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="detalhe-content" *ngIf="isEdit">
+    <form [formGroup]="liberacaoForm" (ngSubmit)="onSubmit()">
+    </form>
+    <div class="row">
+      <div class="col-md-6">
+        <h2 class="no-margin">
+          Emitente
+        </h2>
+        <div class="box-dados">
+          <p>Razão social: <input [(ngModel)]="formData.body.emitente.razaoSocial" placeholder="Editar nome" /></p>
+          <p>CNPJ/ME: <input [(ngModel)]="formData.body.emitente.cnpj" placeholder="Editar nome" /></p>
+          <p>Logradouro: <input [(ngModel)]="formData.body.emitente.logradouro" placeholder="Editar nome" /></p>
+          <p>Cidade: <input [(ngModel)]="formData.body.emitente.cidade" placeholder="Editar nome" /></p>
+          <p>UF: 
+            <select name="uf" id="uf" [(ngModel)]="formData.body.emitente.uf">
+              <option *ngFor="let estado of estados" [value]="estado.sigla">{{estado.sigla}}</option>
+            </select>
+            
+          </p>
+
+          <p>CEP: <input [(ngModel)]="formData.body.emitente.cep" placeholder="Editar nome" /></p>
+          <p>Telefone: <input [(ngModel)]="formData.body.emitente.telefone" placeholder="Editar nome" /></p>
+          <p>E-mail: <input [(ngModel)]="formData.body.emitente.email" placeholder="Editar nome" /></p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <h2 class="no-margin">
+          Proprietário/Devedor
+        </h2>
+        <div class="box-dados">
+          <p>Razão social: <input [(ngModel)]="formData.body.proprietario.razaoSocial" placeholder="Editar nome" /></p>
+          <p>CNPJ/ME: <input [(ngModel)]="formData.body.proprietario.cnpj" placeholder="Editar nome" /></p>
+          <p>Logradouro: <input [(ngModel)]="formData.body.proprietario.logradouro" placeholder="Editar nome" /></p>
+          <p>Cidade: <input [(ngModel)]="formData.body.proprietario.cidade" placeholder="Editar nome" /></p>
+          <p>UF: 
+            <select name="uf" id="uf" [(ngModel)]="formData.body.proprietario.uf">
+              <option *ngFor="let estado of estados" [value]="estado.sigla">{{estado.sigla}}</option>
+            </select>            
+          </p>
+          
+
+          <p>CEP: <input [(ngModel)]="formData.body.proprietario.cep" placeholder="Editar nome" /></p>
+          <p>Telefone: <input [(ngModel)]="formData.body.proprietario.telefone" placeholder="Editar nome" /></p>
+          <p>E-mail: <input [(ngModel)]="formData.body.proprietario.email" placeholder="Editar nome" /></p>
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-md-4">
+        <h2 class="no-margin">
+          Descrição da garantia
+        </h2>
+        <div class="box-dados mb-2">
+          <p><strong>Tipo de bem: </strong>Imóvel</p>
+
+          <p class="no-margin">Descrição do bem: </p>
+          <textarea matInput [(ngModel)]="formData.body.avalista.descricaoBem" name="descricaoBem" cols="40" rows="5" style="width: 100%;"></textarea>
+          
+          <p class="mt-2">Valor de avaliação do bem: <input [(ngModel)]="formData.body.avalista.valorBem" placeholder="Editar nome" /></p>
+        </div>
+
+        <h2 class="no-margin">
+          Empréstimo concedido
+        </h2>
+        <div class="box-dados">
+          <h3><strong>Custo efetivo total</strong></h3>
+
+          <form [formGroup]="liberacaoForm" (ngSubmit)="onSubmit()">
+            <p>Valor solicitado: <input type="number" formControlName="valorSolicitado" [(ngModel)]="formData.body.liberacao.valorSolicitado" placeholder="Editar nome" /></p>
+  
+            <p>N° parcelas: <input  type="number" formControlName="numParcelas" [(ngModel)]="formData.body.liberacao.numeroParcelas"  min="10" max="100" /></p>
+  
+            <button type="submit" class="btn btn-secondary btn-calcula-parcela">Calcular parcelas</button>
+          </form>
+
+
+        </div>
+      </div>
+
+      <div class="col-md-8" *ngIf="showTable">
+        <div class="box-confirmacao">
+          <h3>Custo efetivo total</h3>
+          <p>Valor solicitado: {{ formData.body.liberacao.valorSolicitado | currency : 'BRL' }}</p>
+          <p>N° parcelas: {{ formData.body.liberacao.numeroParcelas }}</p>
+          <p>Valor total devido ao empréstimo: {{ formData.body.liberacao.valorFinanciado | currency : 'BRL' }}</p>
+          <p>Valor parcela: {{ formData.body.liberacao.valorParcela | currency : 'BRL' }}</p>
+          <p>Valor total das parcelas: {{ formData.body.liberacao.valorTotalParcelas | currency : 'BRL' }}</p>
+        </div>
+
+        <h2 class="no-margin">
+          Parcelas
+        </h2>
+
+        <div class="wrap-tabela">
+          <div class="metade-tabela">
+            <table  class="text-center">
+              <thead>
+                <tr>
+                  <th>n° parcela</th>
+                  <th>Valor parcela</th>
+                  <th>Data vencimento</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let parcela of parcelas.slice(0, parcelas.length / 2)">
+                  <td>{{ parcela.numero }}</td>
+                  <td>{{ parcela.valorParcela | currency : 'BRL' }}</td>
+                  <td>{{ parcela.dataVencimento | date:'dd/MM/yyyy' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    
+          <div class="metade-tabela">
+            <table  class="text-center">
+              <thead>
+                <tr>
+                  <th>n° parcela</th>
+                  <th>Valor parcela</th>
+                  <th>Data vencimento</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let parcela of parcelas.slice(parcelas.length / 2)">
+                  <td>{{ parcela.numero }}</td>
+                  <td>{{ parcela.valorParcela | currency : 'BRL' }}</td>
+                  <td>{{ parcela.dataVencimento | date:'dd/MM/yyyy' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
+  
+  <div class="detalhe-footer">
+    <div class="wrap-btn  d-grid gap-2 d-md-flex justify-content-md-end">
+      <button class="btn btn-contrato" (click)="gerarContrato(formData._id)" *ngIf="!isEdit">
+        <span class="text" *ngIf="!formData.confirm">Gerar Contrato</span>
+        <span class="text" *ngIf="formData.confirm">Imprimir Contrato</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-file-earmark-pdf-fill" viewBox="0 0 16 16">
+          <path d="M5.523 12.424q.21-.124.459-.238a8 8 0 0 1-.45.606c-.28.337-.498.516-.635.572l-.035.012a.3.3 0 0 1-.026-.044c-.056-.11-.054-.216.04-.36.106-.165.319-.354.647-.548m2.455-1.647q-.178.037-.356.078a21 21 0 0 0 .5-1.05 12 12 0 0 0 .51.858q-.326.048-.654.114m2.525.939a4 4 0 0 1-.435-.41q.344.007.612.054c.317.057.466.147.518.209a.1.1 0 0 1 .026.064.44.44 0 0 1-.06.2.3.3 0 0 1-.094.124.1.1 0 0 1-.069.015c-.09-.003-.258-.066-.498-.256M8.278 6.97c-.04.244-.108.524-.2.829a5 5 0 0 1-.089-.346c-.076-.353-.087-.63-.046-.822.038-.177.11-.248.196-.283a.5.5 0 0 1 .145-.04c.013.03.028.092.032.198q.008.183-.038.465z"/>
+          <path fill-rule="evenodd" d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2m5.5 1.5v2a1 1 0 0 0 1 1h2zM4.165 13.668c.09.18.23.343.438.419.207.075.412.04.58-.03.318-.13.635-.436.926-.786.333-.401.683-.927 1.021-1.51a11.7 11.7 0 0 1 1.997-.406c.3.383.61.713.91.95.28.22.603.403.934.417a.86.86 0 0 0 .51-.138c.155-.101.27-.247.354-.416.09-.181.145-.37.138-.563a.84.84 0 0 0-.2-.518c-.226-.27-.596-.4-.96-.465a5.8 5.8 0 0 0-1.335-.05 11 11 0 0 1-.98-1.686c.25-.66.437-1.284.52-1.794.036-.218.055-.426.048-.614a1.24 1.24 0 0 0-.127-.538.7.7 0 0 0-.477-.365c-.202-.043-.41 0-.601.077-.377.15-.576.47-.651.823-.073.34-.04.736.046 1.136.088.406.238.848.43 1.295a20 20 0 0 1-1.062 2.227 7.7 7.7 0 0 0-1.482.645c-.37.22-.699.48-.897.787-.21.326-.275.714-.08 1.103"/>
+        </svg>
+      </button>
+      <button class="btn btn-outline" (click)="cancelEdit()" *ngIf="isEdit">Cancelar</button>
+      <button class="btn" (click)="saveChanges()" *ngIf="isEdit">Salvar</button>
+    </div>
+  </div>
+</div>

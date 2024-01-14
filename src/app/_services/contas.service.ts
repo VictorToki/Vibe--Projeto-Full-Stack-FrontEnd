@@ -21,7 +21,6 @@ export class ContasService{
   }
 
   addDados(dados: any){
-    debugger;
     return this.http.post(API + '/new',
     {
       logs: {
@@ -43,7 +42,6 @@ export class ContasService{
   }
 
   editDados(_id: string, dados: any, changes: any){
-    debugger;
     return this.http.put(API + '/' + _id,
     {
       logs: {

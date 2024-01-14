@@ -18,6 +18,7 @@ import { AppRoutingModule } from "./app.routes";
     AppRoutingModule,
     HttpClientModule,
     CommonModule,
+    
   ],
   exports: [
     CommonModule
